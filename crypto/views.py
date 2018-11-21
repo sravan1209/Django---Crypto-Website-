@@ -1,10 +1,9 @@
 from django.shortcuts import render
-
+import requests
+import json
 # Create your views here.
 
 def home(request):
-	import requests
-	import json
 
 	## grab crypto price data 
 	price_request = requests.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,XRP,TRX,LTC,XVG,ETH&tsyms=USD")
@@ -17,8 +16,6 @@ def home(request):
 
 
 def prices(request):
-	import requests
-	import json
 	if request.method == 'POST':
 		quote = request.POST['quote']
 		quote = quote.upper()
