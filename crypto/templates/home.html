@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to Crypto News</h1>
+  <p class="lead">Up-to date info on Crypto Currencies</p>
+</div>
+<!--	<h1> Hello World </h1> -->
+<table class="table table-stripped table-bordered table-hover"> 
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">24hr High</th>
+      <th scope="col">24hr Low</th>
+      <th scope="col">Market Cap</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for key,value in price.DISPLAY.items %}
+		
+<!--	<strong> Name: </strong>{{ key }} <br/> 
+	<strong> Price: </strong>{{value.USD.PRICE}} <br/>
+	<strong>Daily High: </strong> {{value.USD.HIGHDAY}} <br/>
+	<strong>Daily Low: </strong> {{value.USD.LOWDAY}} <br/>
+	<strong>MarketCap:</strong> {{value.USD.MKTCAP}} <br/>
+	<hr> </hr>
+
+
+</br> -->
+    <tr>
+      <td>{{key}}</td>
+      <td>{{value.USD.PRICE}}</td>
+      <td>{{value.USD.HIGHDAY}}</td>
+      <td>{{value.USD.LOWDAY}}</td>
+      <td>{{value.USD.MKTCAP}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+<div class="container">
+	<div class="row">
+		{%	for x in api.Data %}
+		<div class = "col-md">
+			<div class="card" style="width: 18rem;">
+			  <img class="card-img-top" src="{{ x.imageurl }}" alt="{{ x.source }}">
+			  <div class="card-body">
+			    <h5 class="card-title">{{x.title}}</h5>
+			    <p class="card-text">{{x.body}}</p>
+			    <a href="{{ x.url }}" class="btn btn-secondary">Read More...</a>
+			  </div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+<!--	<ul>
+	{%	for x in api.Data %}
+		<li> {{ x.title}} </li>
+	{% endfor %}
+
+	</ul> -->
+
+	<!--{{api.Data}} -->
+
+{% endblock %}
